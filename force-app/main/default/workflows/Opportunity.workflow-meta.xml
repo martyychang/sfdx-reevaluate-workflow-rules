@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <fieldUpdates>
+        <fullName>ProspectingStageDate</fullName>
+        <field>ProspectingStageDate__c</field>
+        <formula>BLANKVALUE(ProspectingStageDate__c, NOW())</formula>
+        <name>Prospecting Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>QualificationStageDate</fullName>
+        <field>QualificationStageDate__c</field>
+        <formula>BLANKVALUE(QualificationStageDate__c, NOW())</formula>
+        <name>Qualification Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>QualificationStageDateBlank</fullName>
+        <field>QualificationStageDate__c</field>
+        <name>Qualification Date Blank</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>RecordTypeAcceleratedOpportunity</fullName>
         <field>RecordTypeId</field>
         <lookupValue>AcceleratedOpportunity</lookupValue>
@@ -19,5 +45,47 @@
         <active>true</active>
         <formula>ISBLANK(RecordTypeId)</formula>
         <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Handle Stage Prospecting</fullName>
+        <actions>
+            <name>ProspectingStageDate</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>QualificationStageDateBlank</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>AND(
+  RecordType.DeveloperName = &#39;AcceleratedOpportunity&#39;,
+  ISPICKVAL(StageName, &#39;Prospecting&#39;),
+  OR(
+    ISNEW(),
+    ISCHANGED(StageName)
+  )
+)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Handle Stage Qualification</fullName>
+        <actions>
+            <name>ProspectingStageDate</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>QualificationStageDate</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>AND(
+  RecordType.DeveloperName = &#39;AcceleratedOpportunity&#39;,
+  ISPICKVAL(StageName, &#39;Qualification&#39;),
+  OR(
+    ISNEW(),
+    ISCHANGED(StageName)
+  )
+)</formula>
+        <triggerType>onAllChanges</triggerType>
     </rules>
 </Workflow>
