@@ -1,0 +1,9 @@
+{
+    "orgName": "Salesforce MVP",
+    "edition": "Enterprise",
+    "settings": {
+        "orgPreferenceSettings": {
+            "s1DesktopEnabled": true
+        }
+    }
+}
