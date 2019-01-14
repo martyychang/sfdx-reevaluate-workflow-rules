@@ -3,6 +3,19 @@
 The goal of this app is to explore whether workflow rules can be chained
 together to stamp opportunity stage entry dates, based on record type.
 
+There workflow rules are used in this experiment.
+
+* Handle Record Type Blank
+* Handle Stage Prospecting
+* Handle Stage Qualification
+
+The latter two workflow rules are expected to fire as a result of the first
+**Handle Record Type Blank** rule fires, which executes a field update
+configured to **[Re-evaluate Workflow Rules after Field Change][1]**.
+
+However, the two "Handle Stage" workflow rules are _not_ firing as expected.
+What is the reason?
+
 ## Dev, Build and Test
 
 Clone this repository to get started. This simplistic example is expected to
