@@ -1,10 +1,11 @@
-# SFDX  App
+# SFDX App
+
+The goal of this app is to explore whether workflow rules can be chained
+together to stamp opportunity stage entry dates, based on record type.
 
 ## Dev, Build and Test
 
-Clone this repository to get started. The goal of this app is to explore
-whether workflow rules can be used together to stamp opportunity stage
-entry dates, based on record type. This simplistic example is expected to
+Clone this repository to get started. This simplistic example is expected to
 work as follows.
 
 * By default opportunities are created without a record type for all profiles
@@ -60,10 +61,6 @@ Qualification Date is stamped | Qualification Date is empty | :x:
 
 ## Resources
 
+* "[Field Updates That Re-evaluate Workflow Rules][1]". _Salesforce Docs_.
 
-## Description of Files and Directories
-
-
-## Issues
-
-
+[1]: https://help.salesforce.com/articleView?id=workflow_field_updates_reevalute_wf.htm&type=5
